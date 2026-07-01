@@ -1,0 +1,35 @@
+<div class="row align-items-center mb-4">
+  <div class="col-auto">
+    <label class="form-label mb-0">Filtrar por:</label>
+  </div>
+  <div class="col-md-3">
+    <input type="text" class="form-control" [(ngModel)]="listFilter">
+  </div>
+  <div class="col-md-4 text-center">
+    Filtrado por: {{ listFilter() }}
+  </div>
+  <div class="col-md-3 text-end">
+    <button class="btn btn-primary" (click)="abrirModal()">Crear Producto</button>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-12">
+    <button class="btn btn-outline-secondary btn-sm" (click)="toggleChildren()">
+      <i class="bi bi-eye"></i> {{ showChildren() ? 'Ocultar' : 'Mostrar' }} Lista
+    </button>
+  </div>
+</div>
+
+@if (showChildren()){
+  <app-product-list 
+    [datos]="filteredProducts()" 
+    (datoEmitido)="datoRecibido.set($event)"
+    (productDeleted)="borrarProducto($event)"
+    (productUpdated)="actualizarProducto($event)">
+  </app-product-list>
+}
+
+@if (isModalOpen()) {
+  <app-modal-add (close)="cerrarModal()"></app-modal-add>
+}

@@ -1,0 +1,13 @@
+.card-body {
+  margin-bottom: 20px;
+}
+
+.card-title {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+:host {
+  display: block;
+  width: 100%;
+}

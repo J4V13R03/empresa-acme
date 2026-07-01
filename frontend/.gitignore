@@ -1,0 +1,28 @@
+# Artifacts de compilación
+dist/
+.cache/
+.angular/
+
+# Dependencias
+node_modules/
+
+# Logs y temporales
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Configuración de editor y sistema
+.vscode/*
+!.vscode/extensions.json
+!.vscode/tasks.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Archivos de caché de TypeScript
+*.tsbuildinfo
+
+# Environment files (contienen secrets)
+src/environments/environment.ts
+src/environments/environment.development.ts

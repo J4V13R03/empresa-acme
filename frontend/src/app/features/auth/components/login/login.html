@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="omb_login">
+    <h3 class="omb_authTitle">Ingresar o <a href="#">Registrarse</a></h3>
+    <div class="row omb_row-sm-offset-3 omb_socialButtons">
+      <div class="col-4 col-sm-2">
+        <a href="#" class="btn btn-lg w-100 omb_btn-facebook">
+          <i class="bi bi-facebook"></i>
+          <span class="d-none d-sm-inline">&nbsp;Facebook</span>
+        </a>
+      </div>
+      <div class="col-4 col-sm-2">
+        <a href="#" class="btn btn-lg w-100 omb_btn-twitter">
+          <i class="bi bi-twitter"></i>
+          <span class="d-none d-sm-inline">&nbsp;Twitter</span>
+        </a>
+      </div>
+      <div class="col-4 col-sm-2">
+        <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+      </div>
+    </div>
+
+    <div class="row omb_row-sm-offset-3 omb_loginOr">
+      <div class="col-12 col-sm-6">
+        <hr class="omb_hrOr">
+        <span class="omb_spanOr">o</span>
+      </div>
+    </div>
+
+    <div class="row omb_row-sm-offset-3">
+      <div class="col-12 col-sm-6">
+        <form class="omb_loginForm" [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person-fill">&nbsp;</i></span>
+            <input formControlName="email" type="text" class="form-control" placeholder="Email">
+          </div>
+          <span class="help-block"></span>
+          <br>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock-fill">&nbsp;</i></span>
+            <input formControlName="password" type="password" class="form-control" placeholder="Password">
+          </div>
+          <br>
+          <button class="btn btn-lg btn-primary w-100" type="submit" [disabled]="loginForm.invalid">Login</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div class="row omb_row-sm-offset-3">
+      <div class="col-12 col-sm-3">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me">&nbsp;Recuérdame
+        </label>
+      </div>
+      <div class="col-12 col-sm-3">
+        <p class="omb_forgotPwd">
+          <a routerLink="/forgot-password">¿Olvidaste la contraseña?</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="virtual-scroll-wrap">
+  <cdk-virtual-scroll-viewport itemSize="100">
+    <li *cdkVirtualFor="let user of usuarios">
+      <div class="thumbnail-wrap">
+        <img [src]="user.avatar" alt="Avatar">
+      </div>
+      <div class="info-wrap">
+        <h4>{{ user.nombre }}</h4>
+        <p>{{ user.email }}</p>
+      </div>
+    </li>
+  </cdk-virtual-scroll-viewport>
+</div>

@@ -1,0 +1,16 @@
+.crop {
+    overflow: hidden;
+}
+
+div {
+    cursor: pointer;
+}
+
+.crop > div {
+    white-space: nowrap; /* Evita que las estrellas se caigan a la línea de abajo */
+}
+
+.bi-star-fill {
+    font-size: 14px; /* Tamaño exacto para no pasarse de los 75px */
+    margin-right: 1px; /* Un pequeñísimo espacio entre ellas */
+}

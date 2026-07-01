@@ -1,0 +1,15 @@
+table {
+    table-layout: auto;
+    width: 100% !important;
+}
+
+th, td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+td:last-child {
+    max-width: none;
+}

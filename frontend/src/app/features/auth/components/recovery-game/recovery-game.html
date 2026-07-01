@@ -1,0 +1,67 @@
+<div style="min-height:100vh;background:#111;display:flex;align-items:center;justify-content:center;font-family:sans-serif;padding:20px;">
+  <div style="background:#222;border-radius:16px;padding:32px;width:100%;max-width:400px;text-align:center;color:#fff;">
+
+    @if (loading()) {
+      <p>Verificando...</p>
+    } @else if (error() && phase() === 'swipe') {
+      <p style="color:red">{{ error() }}</p>
+      <button (click)="goToLogin()" style="margin-top:12px;padding:8px 16px;cursor:pointer">Volver</button>
+    } @else {
+
+      <!-- SWIPE -->
+      @if (phase() === 'swipe') {
+        <h2 style="color:#0af">SWIPE CARD</h2>
+        <p style="color:#999;font-size:14px">Deslizá la tarjeta →</p>
+        <div style="background:#1a1a1a;border-radius:12px;padding:24px;margin:16px 0;position:relative;overflow:hidden">
+          <div data-swipe-card
+               style="width:180px;height:100px;background:#333;border:2px solid #0af;border-radius:8px;padding:12px;cursor:grab;position:relative;user-select:none;will-change:transform;transform:translateZ(0)"
+               (mousedown)="onPointerDown($event)"
+               (touchstart)="onPointerDown($event)">
+            <div style="width:32px;height:24px;background:#fc0;border-radius:4px;margin-bottom:8px"></div>
+            <div style="color:#fff;font-weight:bold;font-size:12px;letter-spacing:1px">ID CARD</div>
+            <div style="color:#0af;position:absolute;right:12px;top:50%;transform:translateY(-50%)">→→→</div>
+          </div>
+        </div>
+      }
+
+      <!-- CODE -->
+      @if (phase() === 'code') {
+        <h2 style="color:#0f0">TAREA COMPLETADA</h2>
+        <p style="color:#999;font-size:14px">Tu código:</p>
+        <div (click)="copyCode()" style="background:rgba(0,255,0,0.1);border:2px solid #0f0;border-radius:12px;padding:16px;cursor:pointer;margin:12px 0">
+          <div style="font-size:32px;font-weight:bold;color:#0f0;letter-spacing:6px;font-family:monospace">{{ code() }}</div>
+          <div style="font-size:11px;color:#666;margin-top:6px">Click para copiar</div>
+        </div>
+        <button (click)="goToForm()" style="background:#0f0;color:#111;border:none;border-radius:8px;padding:10px 20px;font-weight:bold;cursor:pointer">Usar código →</button>
+      }
+
+      <!-- FORM -->
+      @if (phase() === 'form') {
+        <h2 style="color:#0af">NUEVA CONTRASEÑA</h2>
+        @if (error()) {
+          <p style="color:red;font-size:13px">{{ error() }}</p>
+        }
+        <form [formGroup]="resetForm" (ngSubmit)="resetPassword()" style="display:flex;flex-direction:column;gap:12px;text-align:left;margin-top:16px">
+          <input formControlName="code" type="text" placeholder="Código" maxlength="6"
+                 readonly style="background:#1a1a1a;border:1px solid #444;border-radius:8px;padding:10px;color:#fff;font-family:monospace;font-size:18px;letter-spacing:3px;text-align:center">
+          <input formControlName="newPassword" type="password" placeholder="Nueva contraseña"
+                 autocomplete="new-password" style="background:#1a1a1a;border:1px solid #444;border-radius:8px;padding:10px;color:#fff">
+          <input formControlName="confirmPassword" type="password" placeholder="Confirmar contraseña"
+                 autocomplete="new-password" style="background:#1a1a1a;border:1px solid #444;border-radius:8px;padding:10px;color:#fff">
+          <button type="submit" [disabled]="resetForm.invalid || saving()"
+                  style="background:#0af;color:#fff;border:none;border-radius:8px;padding:12px;font-weight:bold;cursor:pointer;margin-top:4px">
+            @if (saving()) { Guardando... } @else { Cambiar Contraseña }
+          </button>
+        </form>
+      }
+
+      <!-- DONE -->
+      @if (phase() === 'done') {
+        <h2 style="color:#0f0">¡CONTRASEÑA ACTUALIZADA!</h2>
+        <p style="color:#999;margin-bottom:16px">{{ successMsg() }}</p>
+        <button (click)="goToLogin()" style="background:#0f0;color:#111;border:none;border-radius:8px;padding:10px 20px;font-weight:bold;cursor:pointer">Ir al login →</button>
+      }
+
+    }
+  </div>
+</div>
